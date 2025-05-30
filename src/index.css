@@ -1,0 +1,568 @@
+@import "tailwindcss";
+
+/* Start Global Variables */
+:root {
+  --primary-color: #ff9f00;
+  --primary-dark: #e08e00;
+  --background-dark: #131921;
+  --background-light: #f3f3f3;
+  --text-primary: #111;
+  --text-secondary: #666;
+  --border-color: #dddddd;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition-speed: 200ms;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  @apply m-0 bg-[var(--background-light)] font-sans antialiased;
+}
+
+code {
+  @apply font-mono;
+}
+
+.container {
+  @apply max-w-7xl mx-auto;
+}
+
+button,
+a {
+  @apply cursor-pointer;
+}
+
+/* End Global Variables */
+
+/* Start Header */
+.header {
+  @apply h-16 sm:h-14 flex items-center bg-[var(--background-dark)] sticky top-0 z-50 shadow-lg;
+}
+
+.loading-container {
+  @apply flex flex-col items-center justify-center p-[var(--spacing-xl)] min-h-[100vh] bg-[var(--background-dark)] text-white;
+}
+
+.loading-spinner {
+  @apply w-20 h-20 border-4 border-gray-800 border-t-[var(--primary-color)] rounded-full animate-spin mb-6;
+}
+
+.loading-text {
+  @apply text-xl font-bold text-white tracking-wider;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  @apply animate-pulse;
+}
+
+.header__container {
+  @apply flex items-center justify-between w-full;
+}
+
+.header__logo {
+  @apply flex items-center text-[var(--primary-color)] mx-5 sm:mx-3;
+}
+
+.header__logoImage {
+  @apply mr-2;
+}
+
+.header__logoTitle {
+  @apply text-white font-bold text-xl sm:text-lg tracking-wider;
+}
+
+.header__search {
+  @apply flex-1 flex items-center mx-2 sm:mx-1 bg-white rounded-full shadow-sm;
+}
+
+.header__searchInput {
+  @apply h-8 px-4 border-none w-full focus:outline-none placeholder-gray-400 text-sm sm:text-xs;
+}
+
+.header__searchIcon {
+  @apply p-1 cursor-pointer h-10 w-10 mr-2 bg-[var(--primary-color)] rounded-full text-white hover:bg-[var(--primary-dark)] transition-colors duration-[var(--transition-speed)];
+}
+
+.header__nav {
+  @apply flex justify-evenly;
+}
+
+.nav__item {
+  @apply flex flex-col mx-2 sm:mx-1 text-white cursor-pointer hover:text-[var(--primary-color)] transition-colors duration-[var(--transition-speed)];
+}
+
+.nav__itemLineOne {
+  @apply text-xs sm:text-[10px] text-gray-400;
+}
+
+.nav__itemLineTwo {
+  @apply text-sm sm:text-[12px] font-bold;
+}
+
+.nav__itemBasket {
+  @apply flex items-center text-white mx-2 sm:mx-1;
+}
+
+.nav__basketCount {
+  @apply mx-2 sm:mx-1 text-[var(--primary-color)] font-bold;
+}
+
+.nav__item:hover .nav__itemLineOne {
+  @apply text-[var(--primary-color)];
+}
+
+.header__logoTitle {
+  @apply transition-all duration-[var(--transition-speed)] ease-in-out;
+}
+
+/* Mobile Menu */
+.header__menu {
+  @apply hidden sm:block;
+}
+
+.header__menuButton {
+  @apply block sm:hidden text-white hover:text-[var(--primary-color)] transition-colors duration-200;
+}
+
+/* Mobile Menu Content */
+.header__mobileMenu {
+  @apply fixed right-0 top-0 w-full sm:w-auto h-screen sm:h-auto bg-[var(--background-dark)] z-50 transform transition-transform duration-300;
+}
+
+.header__mobileMenuOpen {
+  @apply translate-x-0;
+}
+
+.header__mobileMenuClosed {
+  @apply translate-x-full;
+}
+
+.header__mobileMenuOverlay {
+  @apply fixed inset-0 bg-black/50 z-40;
+}
+
+.header__mobileMenuHeader {
+  @apply flex justify-between items-center pb-4 border-b border-gray-800;
+}
+
+.header__mobileMenuCloseButton {
+  @apply text-white hover:text-[var(--primary-color)] transition-colors duration-200;
+}
+
+.header__mobileMenuItem {
+  @apply flex flex-col items-center px-4 py-3 bg-[#1a222d] rounded-lg hover:bg-[#212d3a] transition-colors duration-[var(--transition-speed)];
+}
+
+.header__mobileMenuItemText {
+  @apply text-white text-lg font-bold;
+}
+
+.header__mobileMenuItemSubtext {
+  @apply text-gray-400 text-sm;
+}
+
+.header__mobileMenuCart {
+  @apply flex items-center justify-center;
+}
+
+.header__mobileMenuCartIcon {
+  @apply text-white mr-2;
+}
+
+.header__mobileMenuCartCount {
+  @apply ml-2 bg-[var(--primary-color)] text-white px-2 py-1 rounded-[var(--radius-sm)] text-sm font-bold;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .header__nav {
+    @apply hidden sm:flex;
+  }
+
+  .header__search {
+    @apply hidden sm:flex;
+  }
+}
+/* End Header */
+
+/* Start Home */
+.home {
+  @apply flex flex-col max-w-[1500px] mx-auto;
+}
+
+.home__container {
+  @apply w-full;
+}
+
+.home__image {
+  @apply w-full h-[400px] object-cover -mb-[50px] [mask-image:linear-gradient(to_bottom,_rgba(0,_0,_0,_1),_rgba(0,_0,_0,_0))];
+}
+
+.home__row {
+  @apply flex flex-col md:flex-row gap-y-4 md:gap-0;
+}
+
+.home__row > div {
+  @apply flex-1;
+}
+
+@media (max-width: 768px) {
+  .home__row {
+    @apply flex-col;
+  }
+
+  .home__row > div {
+    @apply w-full;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home__row {
+    @apply flex-col md:flex-row;
+  }
+
+  .home__row > div {
+    @apply w-full md:w-1/2;
+  }
+}
+
+@media (min-width: 1025px) {
+  .home__row {
+    @apply flex-row;
+  }
+
+  .home__row > div {
+    @apply w-full md:w-1/2 lg:w-1/3;
+  }
+}
+
+/* End Home */
+
+/* Start Product */
+.product {
+  @apply flex flex-col items-start justify-end m-2 p-4 bg-white rounded-lg shadow-md transition-all duration-200 hover:shadow-lg;
+}
+
+.product__info {
+  @apply mb-4 w-full;
+}
+
+.product__title {
+  @apply text-lg sm:text-base font-medium mb-2 overflow-hidden text-ellipsis whitespace-nowrap;
+}
+
+.product__price {
+  @apply text-xl sm:text-lg font-bold mb-2;
+}
+
+.product__rating {
+  @apply flex items-center mb-4;
+}
+
+.product__image {
+  @apply w-full !h-[220px] md:!h-48 object-cover rounded-lg mb-4;
+}
+
+.product__button {
+  @apply w-full bg-[var(--primary-color)] text-white font-medium py-2 px-4 rounded-[var(--radius-md)] hover:bg-[var(--primary-dark)] transition-colors duration-[var(--transition-speed)];
+}
+
+.product__button--duplicate {
+  @apply bg-red-500 hover:bg-red-600 transition-colors duration-[var(--transition-speed)];
+}
+
+.product__loading {
+  @apply w-full h-10 flex items-center justify-center gap-2 bg-[var(--primary-color)] rounded-[var(--radius-md)] text-white transition-all duration-300;
+}
+
+.product__spinner {
+  @apply w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin;
+}
+
+@media (max-width: 768px) {
+  .product {
+    @apply m-1 p-2;
+  }
+
+  .product__title {
+    @apply text-sm;
+  }
+
+  .product__price {
+    @apply text-lg;
+  }
+
+  .product__image {
+    @apply h-32;
+  }
+
+  .product__loading {
+    @apply h-8;
+  }
+
+  .product__spinner {
+    @apply w-4 h-4;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product {
+    @apply m-2 p-3;
+  }
+
+  .product__title {
+    @apply text-base;
+  }
+
+  .product__price {
+    @apply text-xl;
+  }
+
+  .product__loading {
+    @apply h-10;
+  }
+
+  .product__spinner {
+    @apply w-5 h-5;
+  }
+}
+
+@media (min-width: 1025px) {
+  .product {
+    @apply m-4 p-4;
+  }
+
+  .product__title {
+    @apply text-lg;
+  }
+
+  .product__price {
+    @apply text-xl;
+  }
+
+  .product__loading {
+    @apply h-12;
+  }
+
+  .product__spinner {
+    @apply w-6 h-6;
+  }
+}
+/* End Product */
+
+/* Start Checkout */
+.checkout {
+  @apply flex flex-col-reverse md:flex-row gap-4 p-6 bg-white min-h-screen;
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.checkout__ad {
+  @apply hidden md:block w-full rounded-lg shadow-lg overflow-hidden;
+  @apply transform hover:scale-105 transition-transform duration-300;
+}
+
+.checkout__title {
+  @apply text-2xl font-bold text-[var(--text-primary)] mb-4;
+  @apply border-b-2 border-[var(--primary-color)] pb-2;
+}
+
+.checkout__left {
+  @apply flex flex-col gap-4 flex-1;
+}
+
+.checkout__products {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+/* End Checkout */
+
+/* Start Checkout Product */
+.checkoutProduct {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300;
+  @apply hover:shadow-xl hover:transform hover:scale-105;
+}
+
+.checkoutProduct__image {
+  @apply w-full h-[200px] object-cover;
+  @apply transition-transform duration-300;
+}
+
+.checkoutProduct__info {
+  @apply p-4;
+}
+
+.checkoutProduct__title {
+  @apply text-xl font-semibold mb-2;
+  @apply text-[var(--text-primary)];
+}
+
+.checkoutProduct__price {
+  @apply text-xl font-bold text-[var(--primary-color)];
+  @apply mb-2;
+}
+
+.checkoutProduct__rating {
+  @apply flex items-center gap-1 mb-2;
+}
+
+.checkoutProduct__rating span {
+  @apply text-yellow-400;
+}
+
+.checkoutProduct__info > button {
+  @apply w-full bg-[var(--primary-color)] text-white py-2 rounded-lg;
+  @apply transition-all duration-300;
+  @apply hover:bg-[var(--primary-dark)] hover:shadow-lg;
+}
+/* End Checkout Product */
+
+/* Start Subtotal */
+.subtotal {
+  @apply bg-white rounded-lg shadow-md p-6;
+  @apply flex flex-col gap-4;
+  @apply sticky top-20;
+  @apply max-w-[350px];
+}
+
+.subtotal__title {
+  @apply text-xl font-bold text-[var(--text-primary)];
+  @apply mb-4;
+}
+
+.subtotal__price {
+  @apply text-2xl font-bold text-[var(--primary-color)];
+}
+
+.subtotal__gift {
+  @apply flex items-center gap-2;
+}
+
+.subtotal__gift input {
+  @apply accent-[var(--primary-color)];
+}
+
+.checkout__button {
+  @apply w-full bg-[var(--primary-color)] text-white py-3 px-6 rounded-lg;
+  @apply font-semibold text-base;
+  @apply transition-all duration-300;
+  @apply hover:bg-[var(--primary-dark)] hover:shadow-xl;
+  @apply active:scale-95;
+  @apply flex items-center justify-center gap-2;
+}
+
+.checkout__button::after {
+  content: '→';
+  @apply transition-transform duration-300;
+}
+
+.checkout__button:hover::after {
+  @apply translate-x-2;
+}
+
+.subtotal button {
+  @apply w-full bg-[var(--primary-color)] text-white py-3 px-6 rounded-lg;
+  @apply font-semibold text-base;
+  @apply transition-all duration-300;
+  @apply hover:bg-[var(--primary-dark)] hover:shadow-xl;
+  @apply active:scale-95;
+  @apply flex items-center justify-center gap-2;
+}
+
+.subtotal button::after {
+  content: "→";
+  @apply transition-transform duration-300;
+}
+
+.subtotal button:hover::after {
+  @apply translate-x-2;
+}
+/* End Subtotal */
+
+/* Start Login */
+.login {
+  @apply min-h-screen flex flex-col items-center justify-center bg-[var(--background-light)] py-[2rem] px-[1rem];
+}
+
+.login__container {
+  @apply bg-white rounded-[var(--radius-lg)] shadow-xl p-[var(--spacing-xl)] max-w-[400px] w-full;
+}
+
+.login__logo {
+  @apply flex items-center justify-center mb-[var(--spacing-lg)];
+}
+
+.login__logoImage {
+  @apply text-[var(--primary-color)] mr-[10px] w-[32px] h-[32px];
+}
+
+.login__logoTitle {
+  @apply text-[var(--primary-color)] font-bold text-[28px] tracking-tight;
+}
+
+.login__title {
+  @apply text-center text-[24px] font-bold mb-[var(--spacing-lg)] text-[var(--text-primary)];
+}
+
+.login__form {
+  @apply space-y-[var(--spacing-md)] w-full;
+}
+
+.login__form h5 {
+  @apply text-[var(--text-secondary)] text-[14px] font-semibold mb-[0.5rem] tracking-wider;
+}
+
+.login__form input {
+  @apply w-full px-[var(--spacing-md)] py-[0.75rem] border-[1px] border-solid border-[var(--border-color)] rounded-[var(--radius-md)] 
+    bg-[#f8f9fa] placeholder-[var(--text-secondary)]
+    focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent 
+    focus:placeholder-transparent transition-all duration-[var(--transition-speed)]
+    hover:border-[var(--primary-color)];
+}
+
+.login__form input::placeholder {
+  @apply text-[var(--text-secondary)] opacity-50 transition-opacity duration-[var(--transition-speed)];
+}
+
+.login__form input:focus::placeholder {
+  @apply opacity-0;
+}
+
+.login__form input:valid {
+  @apply border-[var(--primary-color)];
+}
+
+.login__signInButton {
+  @apply bg-[var(--primary-color)] text-white font-bold py-[0.75rem] px-[2rem] rounded-[var(--radius-md)] 
+    hover:bg-[var(--primary-dark)] transition-colors duration-[var(--transition-speed)] w-full;
+}
+
+.login__terms {
+  @apply text-[13px] text-[var(--text-secondary)] text-center mb-[var(--spacing-md)];
+}
+
+.login__registerButton {
+  @apply mt-[var(--spacing-md)] text-[var(--primary-color)] font-semibold text-center 
+    hover:text-[var(--primary-dark)] transition-colors duration-[var(--transition-speed)];
+}
+
+.login__registerButton:hover {
+  @apply underline;
+}
+/* End Login */
