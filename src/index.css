@@ -395,41 +395,47 @@ a {
 
 /* Start Checkout Product */
 .checkoutProduct {
-  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300;
-  @apply hover:shadow-xl hover:transform hover:scale-105;
+  @apply w-full flex flex-col gap-4 mb-6 p-4 rounded-[8px] bg-[white] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.1)];
+}
+.checkoutProduct__container {
+  @apply flex items-center gap-6;
 }
 
 .checkoutProduct__image {
-  @apply w-full h-[200px] object-cover;
-  @apply transition-transform duration-300;
+  @apply w-[100px] h-[100px] object-cover rounded-[4px];
 }
 
+..checkoutProduct__title-container {
+  @apply flex items-start;
+}
 .checkoutProduct__info {
-  @apply p-4;
+  @apply flex flex-col gap-4 flex-[1];
 }
 
 .checkoutProduct__title {
-  @apply text-xl font-semibold mb-2;
-  @apply text-[var(--text-primary)];
+  @apply text-[1rem] font-medium text-[#333] m-0 leading-[1.4];
+}
+.checkoutProduct__price-container {
+  @apply flex items-center;
+}
+.checkoutProduct__price {
+  @apply m-0 text-[1.25rem] font-semibold text-[#2196F3] flex items-baseline gap-1;
 }
 
-.checkoutProduct__price {
-  @apply text-xl font-bold text-[var(--primary-color)];
-  @apply mb-2;
+.checkoutProduct__rating-container{
+  @apply flex items-center;
 }
 
 .checkoutProduct__rating {
-  @apply flex items-center gap-1 mb-2;
+  @apply flex gap-1 text-[#ffd700];
 }
 
-.checkoutProduct__rating span {
-  @apply text-yellow-400;
+.checkoutProduct__removeButton {
+  @apply bg-[#ff4444] text-[white] border-none px-4 py-2 rounded-[4px] cursor-pointer text-[0.9rem] [transition:background-color_0.2s];
 }
 
-.checkoutProduct__info > button {
-  @apply w-full bg-[var(--primary-color)] text-white py-2 rounded-lg;
-  @apply transition-all duration-300;
-  @apply hover:bg-[var(--primary-dark)] hover:shadow-lg;
+.checkoutProduct__removeButton:hover {
+  @apply bg-[#cc0000];
 }
 /* End Checkout Product */
 
